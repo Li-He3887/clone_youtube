@@ -6,8 +6,7 @@ import {
 } from "@apollo/client";
 import {setContext} from '@apollo/client/link/context';
 import {TOKEN_NAME} from '../vars/token';
-import Topnav from "../components/form/topnav";
-import Sidebar from "../components/form/sidebar";
+import Topnav from "../components/form/Topnav";
 
 import 'bootstrap/dist/css/bootstrap.css';
 import '../styles/globals.css';
@@ -35,11 +34,7 @@ function MyApp({ Component, pageProps }) {
   return(
     <ApolloProvider client={client}>
       <Topnav />
-
-      <div className="d-flex">
-        <Sidebar />
-        <Component {...pageProps} />
-      </div>
+      <Component {...pageProps} />
       </ApolloProvider>
   ) 
     

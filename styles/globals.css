@@ -13,6 +13,11 @@ a {
   text-decoration: none;
 }
 
+.sidebar{
+  height: 100%;
+  width: 400px;
+}
+
 * {
   box-sizing: border-box;
 }

@@ -1,5 +1,5 @@
-function Video() {
-    return( 
+function MyVideo() {
+    return(
         <div>
             <h1>My Video</h1>
 
@@ -19,8 +19,7 @@ function Video() {
                 <h2>Video</h2>
             </div>
         </div>
-
     )
 }
 
-export default Video
+export default MyVideo;

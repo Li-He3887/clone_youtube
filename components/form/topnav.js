@@ -1,31 +1,54 @@
 import Login from '../login';
-import {Navbar, Nav, Container, Form, FormControl, Button} from 'react-bootstrap';
+import Sidebar from './Sidebar';
+import {
+    Navbar, 
+    Nav, 
+    Container, 
+    Form, 
+    FormControl, 
+    Button,
+    Offcanvas
+} from 'react-bootstrap';
 
 function Topnav() {
     return(
-        <Navbar bg="danger" variant="dark" expand="lg">
+        <Navbar bg="dark" variant="dark"expand={false}>
             <Container fluid>
-                <Navbar.Brand href="#">Youtube</Navbar.Brand>
-                <Navbar.Toggle aria-controls="navbarScroll" />
-                <Navbar.Collapse id="navbarScroll">
-                <Nav
-                    className="me-auto my-2 my-lg-0"
-                    style={{ maxHeight: '100px' }}
-                    navbarScroll
+                <Navbar.Toggle aria-controls="offcanvasNavbar" />
+                <Navbar.Offcanvas
+                id="offcanvasNavbar"
+                aria-labelledby="offcanvasNavbarLabel"
+                placement="start"
                 >
-                </Nav>
-                <Form className="d-flex">
+                <Offcanvas.Header closeButton>
+                    <Offcanvas.Title id="offcanvasNavbarLabel">Offcanvas</Offcanvas.Title>
+                </Offcanvas.Header>
+                <Offcanvas.Body>
+                    <Nav className="justify-content-end flex-grow-1 pe-3">
+                    <Sidebar />
+                    </Nav>
+                </Offcanvas.Body>
+                </Navbar.Offcanvas>
+                <Navbar.Brand href="/" className="mx-auto">Youtube</Navbar.Brand>
+                
+                <Form className="d-flex justify-content-center m-auto">
                     <FormControl
                     type="search"
                     placeholder="Search"
-                    className="mx-4"
+                    className="mx-3"
                     aria-label="Search"
                     />
-                    <Button variant="outline-light">Search</Button>
+                    <Button variant="outline-success">Search</Button>
                 </Form>
-                <Nav.Link href="/page/upload">Upload</Nav.Link>
+
+                <Nav
+                    className="m-auto my-2 my-lg-4"
+                    style={{ maxHeight: '100px', display: 'flex'}}
+                >
+                    <Nav.Link href="/page/upload">Upload</Nav.Link>
+                    <Nav.Link href="/page/myvideo">My video</Nav.Link>
+                </Nav>
                 <Login />
-                </Navbar.Collapse>
             </Container>
         </Navbar>
     )

@@ -56,6 +56,7 @@ function Upload() {
     //         cloudName: "dxbi9mcea",
     //         uploadPresent: "user_id/"},
     //         (error, result) => {checkUploadeResults(result)})
+    
     if(typeof window !== 'undefined'){
         let myWidget = window.cloudinary.createUploadWidget(
             {
@@ -99,7 +100,8 @@ function Upload() {
             <Button variant="primary" type="submit">
                 Upload
             </Button>
-        </Form>)
+        </Form>
+    )
     
 }
 

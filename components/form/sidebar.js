@@ -10,15 +10,22 @@ import {Navbar, Nav, Container} from 'react-bootstrap';
 
 function Sidebar() {
     return(
-        <div className="sidebar">
-            <Navbar bg="dark" variant="dark">
-                <Container className="">
-                    <Nav defaultActiveKey="/" className="flex-column d-flex justify-content-center alig-items-center gap-2">
+        <div>
+            <Navbar>
+                <Container>
+                    <Nav defaultActiveKey="/" 
+                        className="
+                        flex-column 
+                        d-flex
+                        justify-content-center 
+                        gap-2
+                        fs-5"
+                    >
                         <Nav.Link href="/" className="icons">
                             <IoHomeOutline />
                             Home
                         </Nav.Link>
-                        <Nav.Link href="/page/video">
+                        <Nav.Link href="/page/watchScreen">
                             <IoPlayOutline />
                             Videos
                         </Nav.Link>
@@ -27,7 +34,7 @@ function Sidebar() {
                             Live
                         </Nav.Link>
 
-                        <hr className="text-white"/>
+                        <hr className="text-black"/>
                         
                         <Nav.Link href="/page/subscriptions">
                             <IoListSharp />
@@ -38,7 +45,7 @@ function Sidebar() {
                             Likes
                         </Nav.Link>
 
-                        <hr className="text-white"/>
+                        <hr className="text-black"/>
 
                         <Nav.Link href="#">Logout</Nav.Link>
                     </Nav>
