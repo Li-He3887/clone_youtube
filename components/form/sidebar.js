@@ -1,3 +1,4 @@
+import Link from "next/link";
 import {
     IoHomeOutline,
     IoPlayOutline, 
@@ -5,6 +6,7 @@ import {
     IoHeartOutline, 
     IoRadioOutline
 } from 'react-icons/io5';
+import {RiVideoUploadLine} from 'react-icons/ri';
 import {Navbar, Nav, Container} from 'react-bootstrap';
 
 
@@ -13,7 +15,8 @@ function Sidebar() {
         <div>
             <Navbar>
                 <Container>
-                    <Nav defaultActiveKey="/" 
+                    <Nav 
+                        defaultActiveKey="/" 
                         className="
                         flex-column 
                         d-flex
@@ -21,33 +24,54 @@ function Sidebar() {
                         gap-2
                         fs-5"
                     >
-                        <Nav.Link href="/" className="icons">
-                            <IoHomeOutline />
-                            Home
-                        </Nav.Link>
-                        <Nav.Link href="/page/watchScreen">
-                            <IoPlayOutline />
-                            Videos
-                        </Nav.Link>
-                        <Nav.Link href="/page/live">
-                            <IoRadioOutline />
-                            Live
-                        </Nav.Link>
+                        <Link href="/" className="icons">
+                            <a>
+                                <IoHomeOutline />
+                                Home
+                            </a>
+                        </Link>
 
-                        <hr className="text-black"/>
+                        <Link href="/page/myvideo">
+                            <a>
+                                <IoPlayOutline />
+                                My Videos
+                            </a>
+                        </Link>
+
+                        <Link href="/page/live">
+                            <a>
+                                <IoRadioOutline />
+                                Live
+                            </a>
+                        </Link>
+
+                        <Link href="/page/upload">
+                            <a>
+                                <RiVideoUploadLine />
+                                Upload
+                            </a>
+                        </Link>
+
+                        <hr className="text-white"/>
                         
-                        <Nav.Link href="/page/subscriptions">
-                            <IoListSharp />
-                            Subscriptions
-                        </Nav.Link>
-                        <Nav.Link href="/page/like">
-                            <IoHeartOutline  />
-                            Likes
-                        </Nav.Link>
+                        <Link href="/page/subscriptions">
+                            <a>
+                                <IoListSharp />
+                                Subscriptions
+                            </a>
+                            
+                        </Link>
+                        <Link href="/page/like">
+                            <a>
+                                <IoHeartOutline  />
+                                Likes
+                            </a>
+                            
+                        </Link>
 
-                        <hr className="text-black"/>
+                        <hr className="text-white"/>
 
-                        <Nav.Link href="#">Logout</Nav.Link>
+                        <Link href="/">Logout</Link>
                     </Nav>
                 </Container>
             </Navbar>

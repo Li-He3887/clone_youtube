@@ -36,47 +36,7 @@ function Upload() {
         document.querySelector('head')?.appendChild(script)
     }, [loading])
 
-    // const checkUploadeResults = (resultEvent) => {
-    //     if(resultEvent.event === 'success') {
-    //         console.log(TOKEN_NAME)
-    //         this.props.postPhoto({user_id: this.props.TOKEN_NAME,
-    //         caption: '',
-    //         url: resultEvent.info.secure_url
-    //     })
-    //         .then(this.props.history.push(`/profile`))
-    //     }
-    // }
 
-    // const showWidget = (widget) => {
-    //     widget.open()
-    // }
-
-    // render() 
-    //     let widget = window.cloudinary.createUploadWidget({
-    //         cloudName: "dxbi9mcea",
-    //         uploadPresent: "user_id/"},
-    //         (error, result) => {checkUploadeResults(result)})
-    
-    if(typeof window !== 'undefined'){
-        let myWidget = window.cloudinary.createUploadWidget(
-            {
-              cloudName: "dxbi9mcea",
-              uploadPreset: "user_id"
-            },
-            (error, result) => {
-              if (!error && result && result.event === "success") {
-                console.log("Done! Here is the image info: ", result.info);
-              }
-            }
-          );
-          document.getElementById("upload_widget").addEventListener(
-            "click",
-            function () {
-              myWidget.open();
-            },
-            false
-          );
-    }
     
     return(
         <Form onSubmit={onSubmitHandler}>

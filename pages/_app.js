@@ -34,6 +34,7 @@ function MyApp({ Component, pageProps }) {
   return(
     <ApolloProvider client={client}>
       <Topnav />
+      <hr />
       <Component {...pageProps} />
       </ApolloProvider>
   ) 

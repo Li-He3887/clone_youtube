@@ -19,19 +19,21 @@ function Topnav() {
                 id="offcanvasNavbar"
                 aria-labelledby="offcanvasNavbarLabel"
                 placement="start"
+                style={{background: "black"}}
                 >
-                <Offcanvas.Header closeButton>
-                    <Offcanvas.Title id="offcanvasNavbarLabel">Offcanvas</Offcanvas.Title>
+                <Offcanvas.Header>
+                    <Offcanvas.Title className="fs-3" id="offcanvasNavbarLabel">Youtube</Offcanvas.Title>
                 </Offcanvas.Header>
+                
                 <Offcanvas.Body>
                     <Nav className="justify-content-end flex-grow-1 pe-3">
-                    <Sidebar />
+                        <Sidebar />
                     </Nav>
                 </Offcanvas.Body>
                 </Navbar.Offcanvas>
-                <Navbar.Brand href="/" className="mx-auto">Youtube</Navbar.Brand>
+                <Navbar.Brand href="/" className="mx-3">Youtube</Navbar.Brand>
                 
-                <Form className="d-flex justify-content-center m-auto">
+                <Form className="d-flex justify-content-center mx-auto">
                     <FormControl
                     type="search"
                     placeholder="Search"
@@ -41,13 +43,6 @@ function Topnav() {
                     <Button variant="outline-success">Search</Button>
                 </Form>
 
-                <Nav
-                    className="m-auto my-2 my-lg-4"
-                    style={{ maxHeight: '100px', display: 'flex'}}
-                >
-                    <Nav.Link href="/page/upload">Upload</Nav.Link>
-                    <Nav.Link href="/page/myvideo">My video</Nav.Link>
-                </Nav>
                 <Login />
             </Container>
         </Navbar>
