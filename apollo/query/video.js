@@ -17,3 +17,21 @@ export const GET_VIDEO = gql`
 		}
 	}
 `;
+
+export const GET_VIDEOS = gql`
+	query getVideos {
+		getVideos {
+			url
+			title
+			description
+			likes
+			views
+			createdAt
+			author {
+				profilePic
+				subscribers
+				username
+			}
+		}
+	}
+`;
