@@ -57,6 +57,35 @@ function Upload() {
 		);
 	}, []);
 
+<<<<<<< HEAD
+
+    
+    return(
+        <Form onSubmit={onSubmitHandler}>
+            <Form.Group className="mb-8">
+                <Form.Label>Video Name</Form.Label>
+                <Form.Control type="name" placeholder="Enter a name for your video" onChange={onChangeHandler} />
+            </Form.Group>
+
+            <Form.Group className="mb-3">
+                <Form.Label>Description</Form.Label>
+                <Form.Control type="description" placeholder="Enter description for your video" onChange={onChangeHandler} />
+            </Form.Group>
+            <Form.Group className="mb-3">
+                <Form.Label>Video</Form.Label>
+                <Button 
+                // onClick={showWidget}
+                >
+                    Upload files
+                </Button>
+            </Form.Group>
+            <Button variant="primary" type="submit">
+                Upload
+            </Button>
+        </Form>
+    )
+    
+=======
 	return (
 		<Form onSubmit={onSubmitHandler}>
 			<Form.Group className="mb-8">
@@ -85,6 +114,7 @@ function Upload() {
 			</Button>
 		</Form>
 	);
+>>>>>>> 978749a7268df93cfbce6d6dc1244e36e4a1024c
 }
 
 export default Upload;

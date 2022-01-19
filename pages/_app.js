@@ -34,6 +34,16 @@ const client = new ApolloClient({
 });
 
 function MyApp({ Component, pageProps }) {
+<<<<<<< HEAD
+  return(
+    <ApolloProvider client={client}>
+      <Topnav />
+      <hr />
+      <Component {...pageProps} />
+      </ApolloProvider>
+  ) 
+    
+=======
 	// const [loading, setLoading] = useState(true);
 	// useEffect(() => {
 	// 	const cloudinaryOnLoad = _ => {
@@ -74,6 +84,7 @@ function MyApp({ Component, pageProps }) {
 			<Component {...pageProps} />
 		</ApolloProvider>
 	);
+>>>>>>> 978749a7268df93cfbce6d6dc1244e36e4a1024c
 }
 
 export default MyApp;
