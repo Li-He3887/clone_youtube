@@ -1,5 +1,6 @@
 import Link from "next/link";
 import {
+<<<<<<< HEAD
     IoHomeOutline,
     IoPlayOutline, 
     IoListSharp, 
@@ -18,10 +19,29 @@ function Sidebar() {
                     <Nav 
                         defaultActiveKey="/" 
                         className="
+=======
+	IoHomeOutline,
+	IoPlayOutline,
+	IoListSharp,
+	IoHeartOutline,
+	IoRadioOutline,
+} from "react-icons/io5";
+import { Navbar, Nav, Container } from "react-bootstrap";
+
+function Sidebar() {
+	return (
+		<div>
+			<Navbar>
+				<Container>
+					<Nav
+						defaultActiveKey="/"
+						className="
+>>>>>>> 978749a7268df93cfbce6d6dc1244e36e4a1024c
                         flex-column 
                         d-flex
                         justify-content-center 
                         gap-2
+<<<<<<< HEAD
                         fs-5"
                     >
                         <Link href="/" className="icons">
@@ -77,6 +97,41 @@ function Sidebar() {
             </Navbar>
         </div>
     )
+=======
+                        fs-5">
+						<Nav.Link href="/" className="icons">
+							<IoHomeOutline />
+							Home
+						</Nav.Link>
+						<Nav.Link href="/page/watchScreen">
+							<IoPlayOutline />
+							Videos
+						</Nav.Link>
+						<Nav.Link href="/page/live">
+							<IoRadioOutline />
+							Live
+						</Nav.Link>
+
+						<hr className="text-black" />
+
+						<Nav.Link href="/page/subscriptions">
+							<IoListSharp />
+							Subscriptions
+						</Nav.Link>
+						<Nav.Link href="/page/like">
+							<IoHeartOutline />
+							Likes
+						</Nav.Link>
+
+						<hr className="text-black" />
+
+						<Nav.Link href="#">Logout</Nav.Link>
+					</Nav>
+				</Container>
+			</Navbar>
+		</div>
+	);
+>>>>>>> 978749a7268df93cfbce6d6dc1244e36e4a1024c
 }
 
-export default Sidebar
+export default Sidebar;
