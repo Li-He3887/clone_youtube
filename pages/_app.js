@@ -4,7 +4,6 @@ import {
 	createHttpLink,
 	InMemoryCache,
 } from "@apollo/client";
-import { useState, useEffect } from "react";
 import { setContext } from "@apollo/client/link/context";
 import Script from "next/script";
 import Head from "next/head";
@@ -34,16 +33,6 @@ const client = new ApolloClient({
 });
 
 function MyApp({ Component, pageProps }) {
-<<<<<<< HEAD
-  return(
-    <ApolloProvider client={client}>
-      <Topnav />
-      <hr />
-      <Component {...pageProps} />
-      </ApolloProvider>
-  ) 
-    
-=======
 	// const [loading, setLoading] = useState(true);
 	// useEffect(() => {
 	// 	const cloudinaryOnLoad = _ => {
@@ -69,9 +58,7 @@ function MyApp({ Component, pageProps }) {
 					rel="stylesheet"
 				/>
 			</Head>
-			<Script
-				src="https://widget.cloudinary.com/v2.0/global/all.js"
-				strategy="beforeInteractive"></Script>
+
 			<Script
 				src="https://unpkg.com/cloudinary-core@latest/cloudinary-core-shrinkwrap.min.js"
 				strategy="beforeInteractive"
@@ -84,7 +71,6 @@ function MyApp({ Component, pageProps }) {
 			<Component {...pageProps} />
 		</ApolloProvider>
 	);
->>>>>>> 978749a7268df93cfbce6d6dc1244e36e4a1024c
 }
 
 export default MyApp;

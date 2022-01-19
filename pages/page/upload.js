@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useMutation } from "@apollo/client";
 import { CREATE_VIDEO } from "../../apollo/mutation/video";
-import { TOKEN_NAME } from "../../vars/token";
+import Script from "next/script";
 
 import { Form, Button } from "react-bootstrap";
 
@@ -57,64 +57,39 @@ function Upload() {
 		);
 	}, []);
 
-<<<<<<< HEAD
-
-    
-    return(
-        <Form onSubmit={onSubmitHandler}>
-            <Form.Group className="mb-8">
-                <Form.Label>Video Name</Form.Label>
-                <Form.Control type="name" placeholder="Enter a name for your video" onChange={onChangeHandler} />
-            </Form.Group>
-
-            <Form.Group className="mb-3">
-                <Form.Label>Description</Form.Label>
-                <Form.Control type="description" placeholder="Enter description for your video" onChange={onChangeHandler} />
-            </Form.Group>
-            <Form.Group className="mb-3">
-                <Form.Label>Video</Form.Label>
-                <Button 
-                // onClick={showWidget}
-                >
-                    Upload files
-                </Button>
-            </Form.Group>
-            <Button variant="primary" type="submit">
-                Upload
-            </Button>
-        </Form>
-    )
-    
-=======
 	return (
-		<Form onSubmit={onSubmitHandler}>
-			<Form.Group className="mb-8">
-				<Form.Label>Video Name</Form.Label>
-				<Form.Control
-					name="title"
-					placeholder="Enter a name for your video"
-					onChange={onChangeHandler}
-				/>
-			</Form.Group>
+		<>
+			<Script
+				src="https://widget.cloudinary.com/v2.0/global/all.js"
+				strategy="beforeInteractive"></Script>
+			<Form onSubmit={onSubmitHandler}>
+				<Form.Group className="mb-8">
+					<Form.Label>Video Name</Form.Label>
+					<Form.Control
+						name="title"
+						placeholder="Enter a name for your video"
+						onChange={onChangeHandler}
+					/>
+				</Form.Group>
 
-			<Form.Group className="mb-3">
-				<Form.Label>Description</Form.Label>
-				<Form.Control
-					name="description"
-					placeholder="Enter description for your video"
-					onChange={onChangeHandler}
-				/>
-			</Form.Group>
-			<Form.Group className="mb-3">
-				<Form.Label>Video</Form.Label>
-				<Button onClick={handleOnClick}>Upload Video</Button>
-			</Form.Group>
-			<Button variant="primary" type="submit">
-				Upload
-			</Button>
-		</Form>
+				<Form.Group className="mb-3">
+					<Form.Label>Description</Form.Label>
+					<Form.Control
+						name="description"
+						placeholder="Enter description for your video"
+						onChange={onChangeHandler}
+					/>
+				</Form.Group>
+				<Form.Group className="mb-3">
+					<Form.Label>Video</Form.Label>
+					<Button onClick={handleOnClick}>Upload Video</Button>
+				</Form.Group>
+				<Button variant="primary" type="submit">
+					Upload
+				</Button>
+			</Form>
+		</>
 	);
->>>>>>> 978749a7268df93cfbce6d6dc1244e36e4a1024c
 }
 
 export default Upload;
