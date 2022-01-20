@@ -4,7 +4,6 @@ import {
 	createHttpLink,
 	InMemoryCache,
 } from "@apollo/client";
-import { useState, useEffect } from "react";
 import { setContext } from "@apollo/client/link/context";
 import Script from "next/script";
 import Head from "next/head";
@@ -34,32 +33,6 @@ const client = new ApolloClient({
 });
 
 function MyApp({ Component, pageProps }) {
-<<<<<<< HEAD
-  return(
-    <ApolloProvider client={client}>
-      <Topnav />
-      <hr />
-      <Component {...pageProps} />
-      </ApolloProvider>
-  ) 
-    
-=======
-	// const [loading, setLoading] = useState(true);
-	// useEffect(() => {
-	// 	const cloudinaryOnLoad = _ => {
-	// 		if (!window.google || !loading) return;
-	// 		setLoading(false);
-	// 		console.log("loaded");
-	// 	};
-
-	// 	const script = document.createElement("script");
-	// 	script.src = "https://widget.cloudinary.com/v2.0/global/all.js";
-	// 	script.onload = cloudinaryOnLoad;
-	// 	script.async = true;
-	// 	script.id = "cloudinary-script";
-	// 	document.querySelector("head")?.appendChild(script);
-	// }, [loading]);
-
 	// TODO: put a loader
 	return (
 		<ApolloProvider client={client}>
@@ -70,9 +43,6 @@ function MyApp({ Component, pageProps }) {
 				/>
 			</Head>
 			<Script
-				src="https://widget.cloudinary.com/v2.0/global/all.js"
-				strategy="beforeInteractive"></Script>
-			<Script
 				src="https://unpkg.com/cloudinary-core@latest/cloudinary-core-shrinkwrap.min.js"
 				strategy="beforeInteractive"
 				type="text/javascript"></Script>
@@ -81,10 +51,10 @@ function MyApp({ Component, pageProps }) {
 				strategy="beforeInteractive"
 				type="text/javascript"></Script>
 			<Topnav />
+			<hr />
 			<Component {...pageProps} />
 		</ApolloProvider>
 	);
->>>>>>> 978749a7268df93cfbce6d6dc1244e36e4a1024c
 }
 
 export default MyApp;
