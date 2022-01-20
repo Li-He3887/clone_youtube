@@ -13,8 +13,13 @@ export const CREATE_VIDEO = gql`
 `;
 
 export const UPDATE_VIDEO = gql`
+<<<<<<< HEAD
 	mutation updateVideo($id: ID, $video:VideoInput) {
 		updateVideo(id:$id, video:$video){
+=======
+	mutation updateVideo($id: ID, $video: VideoInput) {
+		updateVideo(id: $id, video: $video) {
+>>>>>>> a3a948727c07c7f051b319b04c2da5d49f6b2ea0
 			title
 		}
 	}
