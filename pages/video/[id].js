@@ -4,7 +4,7 @@ import { useQuery } from "@apollo/client";
 import { GET_VIDEO } from "../../apollo/query/video";
 import WatchScreen from "../../components/watchScreen";
 
-function VideoDetails({}) {
+function VideoDetails() {
 	const router = useRouter();
 	const { id } = router.query;
 	const { data, loading } = useQuery(GET_VIDEO, {
