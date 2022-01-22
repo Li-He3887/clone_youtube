@@ -3,18 +3,18 @@ import {useMutation} from '@apollo/client';
 import { UPDATE_VIDEO } from '../../apollo/mutation/video';
 
 function EditVideo() {
-    let [updatedVideo, setUpdatedVideo] = useState({
-        id: post.id,
-        title: post.title,
+    const [updatedVideo, setUpdatedVideo] = useState({
+        id: video.id,
+        title: video.title,
     })
 
-    let [updateVideo] = useMutation(UPDATE_VIDEO)
+    const [updateVideo] = useMutation(UPDATE_VIDEO)
 
-    let onChangeHandler = (e) => {
+    const onChangeHandler = (e) => {
         setUpdatedVideo({...updatedVideo, [e.target.name]: e.target.value})
     }
 
-    let onSubmitHandler = () => {
+    const onSubmitHandler = () => {
         updateVideo({
             variables: updatedVideo
         })
