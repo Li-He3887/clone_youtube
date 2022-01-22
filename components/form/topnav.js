@@ -44,7 +44,7 @@ function Topnav() {
                     <Button variant="outline-success">Search</Button>
                 </Form>
 
-                <Button variant="danger" style={{marginRight: "40px"}}>Go Live</Button>
+                <Button href="/live" variant="danger" style={{marginRight: "40px"}}>Go Live</Button>
 
                 {(typeof window !== "undefined") &&
                     (localStorage.hasOwnProperty(TOKEN_NAME) ?
