@@ -7,6 +7,12 @@ function LikeButton() {
 
     const onClickHandler = async () => {
         
+        // console.log('hello + 1')
+    }
+
+    const handleOnClick = async () => {
+        
+        // console.log("hello - 1")
     }
 
     return(
@@ -15,11 +21,11 @@ function LikeButton() {
                 <BiCommentDetail />
                 <span>3</span>
             </i>
-            <i>
+            <i onClick={handleOnClick}>
                 <BiDislike />
                 <span>0</span>
             </i>
-            <i>
+            <i onClick={onClickHandler}>
                 <BiLike />
                 <span>12</span>
             </i>

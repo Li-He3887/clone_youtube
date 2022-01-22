@@ -37,6 +37,7 @@ function Upload() {
 	const handleOnClick = _ => {
 		widgetRef?.current?.open();
 	};
+	
 	console.log(form);
 	useEffect(() => {
 		widgetRef.current = window.cloudinary.createUploadWidget(
@@ -61,7 +62,6 @@ function Upload() {
 		<>
 			<Script
 				src="https://widget.cloudinary.com/v2.0/global/all.js"
-<<<<<<< HEAD
 				strategy="beforeInteractive">
 			</Script>
 
@@ -98,36 +98,6 @@ function Upload() {
 			
 		</>
 		
-=======
-				strategy="beforeInteractive"></Script>
-			<Form onSubmit={onSubmitHandler}>
-				<Form.Group className="mb-8">
-					<Form.Label>Video Name</Form.Label>
-					<Form.Control
-						name="title"
-						placeholder="Enter a name for your video"
-						onChange={onChangeHandler}
-					/>
-				</Form.Group>
-
-				<Form.Group className="mb-3">
-					<Form.Label>Description</Form.Label>
-					<Form.Control
-						name="description"
-						placeholder="Enter description for your video"
-						onChange={onChangeHandler}
-					/>
-				</Form.Group>
-				<Form.Group className="mb-3">
-					<Form.Label>Video</Form.Label>
-					<Button onClick={handleOnClick}>Upload Video</Button>
-				</Form.Group>
-				<Button variant="primary" type="submit">
-					Upload
-				</Button>
-			</Form>
-		</>
->>>>>>> a3a948727c07c7f051b319b04c2da5d49f6b2ea0
 	);
 }
 

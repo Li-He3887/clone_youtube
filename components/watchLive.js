@@ -1,4 +1,5 @@
 import LikeButton from './likeButton';
+import Comment from './comment';
 
 function Live() {
     return(
@@ -26,24 +27,16 @@ function Live() {
                         </div>
                         <p>video description</p>
                     </div>
-
-                    <hr />
-                        
-                    <div>
-                        <img />
-                        <p>name</p>
-                        <p>Comment</p>
-                    </div>
                 </div>
 
                 <div className="col-md-4">
-                    <div className="card bg-danger d-flex justify-content-center" style={{ height: "30rem"}}>
+                    <div className="card bg-secondary d-flex justify-content-center" style={{ height: "30rem"}}>
                         <div className="card-body">
+                            <Comment />
                             <h5 className="card-title">
                                 <img src="" alt="username"/>
                             </h5>
                             <h6 className="card-subtitle mb-2">comment</h6>
-                            <p className="card-text"></p>
                         </div>
                     </div>
 

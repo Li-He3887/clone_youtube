@@ -1,3 +1,5 @@
+import Video from '../../components/Video';
+
 function MyVideo() {
     return(
         <div>
@@ -17,6 +19,7 @@ function MyVideo() {
 
             <div>
                 <h2>Video</h2>
+                
             </div>
         </div>
     )

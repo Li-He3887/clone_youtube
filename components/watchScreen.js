@@ -1,3 +1,4 @@
+import Comment from './comment';
 import { useEffect } from "react";
 import {useMutation} from '@apollo/client';
 import {BiLike, BiDislike, BiCommentDetail} from 'react-icons/bi';
@@ -46,6 +47,10 @@ function WatchScreen({ video }) {
 						</div>
 						<p>{description}</p>
 					</div>
+
+					<hr />
+					
+					<Comment />
 
 					<div>
 						<img src={author.profilePic} alt={author.username} />
