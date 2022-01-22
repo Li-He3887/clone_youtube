@@ -33,22 +33,6 @@ const client = new ApolloClient({
 });
 
 function MyApp({ Component, pageProps }) {
-	// const [loading, setLoading] = useState(true);
-	// useEffect(() => {
-	// 	const cloudinaryOnLoad = _ => {
-	// 		if (!window.google || !loading) return;
-	// 		setLoading(false);
-	// 		console.log("loaded");
-	// 	};
-
-	// 	const script = document.createElement("script");
-	// 	script.src = "https://widget.cloudinary.com/v2.0/global/all.js";
-	// 	script.onload = cloudinaryOnLoad;
-	// 	script.async = true;
-	// 	script.id = "cloudinary-script";
-	// 	document.querySelector("head")?.appendChild(script);
-	// }, [loading]);
-
 	// TODO: put a loader
 	return (
 		<ApolloProvider client={client}>
@@ -58,7 +42,6 @@ function MyApp({ Component, pageProps }) {
 					rel="stylesheet"
 				/>
 			</Head>
-
 			<Script
 				src="https://unpkg.com/cloudinary-core@latest/cloudinary-core-shrinkwrap.min.js"
 				strategy="beforeInteractive"
@@ -68,6 +51,7 @@ function MyApp({ Component, pageProps }) {
 				strategy="beforeInteractive"
 				type="text/javascript"></Script>
 			<Topnav />
+			<hr />
 			<Component {...pageProps} />
 		</ApolloProvider>
 	);

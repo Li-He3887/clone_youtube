@@ -1,32 +1,20 @@
 import { useState, useEffect, useRef } from "react";
 import { useMutation } from "@apollo/client";
 import { LOGIN } from "../apollo/mutation/login";
+import {TOKEN_NAME} from '../vars/token'
 
-const clientId =
-	"9103764666-2bkf8s7mjntcrmnka1h757t0c864i1c6.apps.googleusercontent.com";
+const clientId = "9103764666-2bkf8s7mjntcrmnka1h757t0c864i1c6.apps.googleusercontent.com";
 
 function Login() {
 	const [gsiLoaded, setGsiLoaded] = useState(false);
-	const [user, setUser] = useState();
 	const btnDivRef = useRef();
-
 	const [login, { data }] = useMutation(LOGIN);
 
-	const onSignOut = _ => {
-		window.google?.accounts?.id?.disableAutoSelect(
-			user.sub,
-			(done, err) => {
-				console.log(done, err);
-			}
-		);
-	};
-
 	useEffect(() => {
-		const handelGoogleletSignIn = async res => {
+		const handelGoogleletSignIn = res => {
 			login({
 				variables: { token: res.credential },
 			});
-			// console.log(res.credential)
 		};
 
 		const initializeGsi = _ => {
@@ -57,18 +45,16 @@ function Login() {
 		};
 	}, [gsiLoaded]);
 
+	useEffect(() => {
+		if(data) {
+			window.localStorage.setItem(TOKEN_NAME, data.login)
+		}
+		// console.log(TOKEN_NAME)
+	},[data])
+
 	return (
 		<div>
-			{!user ? (
-				<div id="buttonDiv" ref={btnDivRef}></div>
-			) : (
-				<>
-					<p>
-						<img src={user.picture} alt="" />
-						{user.name}
-					</p>
-				</>
-			)}
+			<div id="buttonDiv" ref={btnDivRef}></div>
 		</div>
 	);
 }
