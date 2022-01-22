@@ -24,7 +24,7 @@ function Upload() {
 		try {
 			console.log(form);
 			const result = await addVideo({
-				variables: form,
+				variables: { video: form },
 			});
 			console.log(result);
 		} catch (err) {
@@ -50,7 +50,6 @@ function Upload() {
 			(error, result) => {
 				if (!error && result && result.event === "success") {
 					console.log("Done! Here is the image info: ", result.info);
-					console.log(result.info.url);
 					setForm(prev => ({ ...prev, url: result.info.url }));
 				}
 			}
