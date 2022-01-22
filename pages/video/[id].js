@@ -14,8 +14,6 @@ function VideoDetails() {
 	});
 
 	if (loading) return <p>Loading...</p>;
-	console.log(data);
-	console.log(loading);
 	return (
 		<>
 			<h1>Video</h1>

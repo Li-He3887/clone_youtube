@@ -1,7 +1,7 @@
-import Comment from './comment';
+import Comment from "./comment";
 import { useEffect } from "react";
-import {useMutation} from '@apollo/client';
-import {BiLike, BiDislike, BiCommentDetail} from 'react-icons/bi';
+import { useMutation } from "@apollo/client";
+import { BiLike, BiDislike, BiCommentDetail } from "react-icons/bi";
 
 function WatchScreen({ video }) {
 	const { url, title, createdAt, author, description } = video;
@@ -31,10 +31,10 @@ function WatchScreen({ video }) {
 						<p>{title}</p>
 						<p>{date}</p>
 						<div className="d-flex flex-row-reverse fs-3">
-                            <BiCommentDetail />
+							<BiCommentDetail />
 							<BiDislike />
-                            <BiLike />
-                        </div>
+							<BiLike />
+						</div>
 					</div>
 
 					<hr />
@@ -43,13 +43,15 @@ function WatchScreen({ video }) {
 						<img src={author.profilePic} alt={author.username} />
 						<h3>{author.username}</h3>
 						<div className="d-flex flex-row-reverse">
-							<button className="btn btn-danger">subscribe</button>
+							<button className="btn btn-danger">
+								subscribe
+							</button>
 						</div>
 						<p>{description}</p>
 					</div>
 
 					<hr />
-					
+
 					<Comment />
 
 					<div>
@@ -58,25 +60,6 @@ function WatchScreen({ video }) {
 						<p>Comment</p>
 					</div>
 				</div>
-				
-				<div className="col-md-4">
-                    <div className="row g-0">
-                        <div className="col-md-4">
-							<video
-								id="doc-player"
-								controls
-								className="cld-video-player cld-fluid"></video>
-                        </div>
-                        <div className="col-md-8">
-                            <div className="card-body">
-                                <h5 className="card-title">{title}</h5>
-                                <p className="card-text">{author.username}</p>
-                                <p className="card-text"><small className="text-muted">{date}</small></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
 			</div>
 		</div>
 	);

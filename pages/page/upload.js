@@ -4,8 +4,10 @@ import { CREATE_VIDEO } from "../../apollo/mutation/video";
 import Script from "next/script";
 
 import { Form, Button } from "react-bootstrap";
+import { useRouter } from "next/router";
 
 function Upload() {
+	const router = useRouter();
 	const [form, setForm] = useState({
 		title: "",
 		description: "",
@@ -26,6 +28,7 @@ function Upload() {
 			const result = await addVideo({
 				variables: { video: form },
 			});
+			router.push("/");
 			console.log(result);
 		} catch (err) {
 			console.log(err?.networkError?.result?.errors?.[0]?.message);
@@ -37,7 +40,7 @@ function Upload() {
 	const handleOnClick = _ => {
 		widgetRef?.current?.open();
 	};
-	
+
 	console.log(form);
 	useEffect(() => {
 		widgetRef.current = window.cloudinary.createUploadWidget(
@@ -60,18 +63,17 @@ function Upload() {
 	return (
 		<>
 			<Script
+				id="cloudinary-script"
 				src="https://widget.cloudinary.com/v2.0/global/all.js"
-				strategy="beforeInteractive">
-			</Script>
+				strategy="beforeInteractive"></Script>
 
-			<div className="px-auto">
+			<div className="mx-auto col-md-6 col-lg-4 col-xl-3">
 				<Form onSubmit={onSubmitHandler}>
 					<Form.Group className="mb-3">
 						<Form.Label>Video Name</Form.Label>
 						<Form.Control
 							name="title"
 							placeholder="Enter a name for your video"
-							style={{width: "40%"}}
 							onChange={onChangeHandler}
 						/>
 					</Form.Group>
@@ -81,7 +83,6 @@ function Upload() {
 						<Form.Control
 							name="description"
 							placeholder="Enter description for your video"
-							style={{width: "40%"}}
 							onChange={onChangeHandler}
 						/>
 					</Form.Group>
@@ -94,9 +95,7 @@ function Upload() {
 					</Button>
 				</Form>
 			</div>
-			
 		</>
-		
 	);
 }
 

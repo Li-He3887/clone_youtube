@@ -3,7 +3,9 @@ import {
 	ApolloClient,
 	createHttpLink,
 	InMemoryCache,
+	split,
 } from "@apollo/client";
+import { WebSocketLink } from "@apollo/client/link/ws";
 import { setContext } from "@apollo/client/link/context";
 import Script from "next/script";
 import Head from "next/head";
@@ -12,13 +14,28 @@ import Topnav from "../components/form/Topnav";
 
 import "bootstrap/dist/css/bootstrap.css";
 import "../styles/globals.css";
+import { getMainDefinition } from "@apollo/client/utilities";
+// fix https://github.com/apollographql/subscriptions-transport-ws/issues/333
 
 const httpLink = createHttpLink({
 	uri: "http://localhost:4000/graphql",
 });
 
+const wsLink =
+	process.browser &&
+	new WebSocketLink({
+		uri: "ws://localhost:4000/graphql",
+		options: {
+			reconnect: true,
+			connectionParams: {
+				authorization: localStorage.getItem(TOKEN_NAME),
+			},
+		},
+	});
+
 const authLink = setContext((_, { headers }) => {
 	const token = localStorage.getItem(TOKEN_NAME);
+
 	return {
 		headers: {
 			...headers,
@@ -27,8 +44,22 @@ const authLink = setContext((_, { headers }) => {
 	};
 });
 
+const splitLink =
+	process.browser &&
+	split(
+		({ query }) => {
+			const definition = getMainDefinition(query);
+			return (
+				definition.kind === "OperationDefinition" &&
+				definition.operation === "subscription"
+			);
+		},
+		wsLink,
+		authLink.concat(httpLink)
+	);
+
 const client = new ApolloClient({
-	link: authLink.concat(httpLink),
+	link: process.browser ? splitLink : authLink.concat(httpLink),
 	cache: new InMemoryCache(),
 });
 

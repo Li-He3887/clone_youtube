@@ -1,21 +1,40 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { BiLike, BiCommentDetail } from "react-icons/bi";
 import { useRouter } from "next/router";
 import jwtDecode from "jwt-decode";
+import { useQuery } from "@apollo/client";
+
+import { GET_USER } from "../../../apollo/query/user";
+import { GET_VIDEO } from "../../../apollo/query/video";
+
 import { TOKEN_NAME } from "../../../vars/token";
 
 function Live() {
 	const router = useRouter();
-	const { id } = router.query;
+	const { id, videoId } = router.query;
+	const [initiator, setInitiator] = useState(false);
 	const videoRef = useRef();
+	const { data, loading, error } = useQuery(GET_USER, {
+		variables: {
+			id,
+		},
+	});
+	const { data: videoData } = useQuery(GET_VIDEO, {
+		variables: {
+			id: videoId,
+		},
+	});
 
 	useEffect(() => {
-		// const user = jwtDecode(localStorage.getItem(TOKEN_NAME));
-		// const isInitiating = user.id === id;
-		const isInitiating = localStorage.getItem("initiator");
+		const user = jwtDecode(localStorage.getItem(TOKEN_NAME));
+		if (!id || !data?.getUser?.isLive) return;
+		const isInitiating = user.id === id;
+		// const isInitiating = localStorage.getItem("initiator");
 		const buffers = [];
 		const ws = new WebSocket(
-			`ws://localhost:5000/${id}?initiator=${isInitiating}&token=${localStorage.getItem(
+			`ws://localhost:5000/${
+				user.id
+			}?initiator=${isInitiating}&token=${localStorage.getItem(
 				TOKEN_NAME
 			)}`
 		);
@@ -26,22 +45,24 @@ function Live() {
 		let initiatedUpdate = false;
 		// for initiator
 		ws.onopen = e => {
+			/**
+			 *   video: {
+						cursor: "always"
+					},
+			 */
+			// MediaSource.isTypeSupported('video/webm; codecs="vp9"')
 			console.log(e);
-			if (isInitiating == "true") {
+			if (isInitiating) {
+				setInitiator(true);
 				navigator.mediaDevices
 					.getUserMedia({
-						/**
-						 *   video: {
-									cursor: "always"
-								},
-						 */
 						video: true,
 						audio: true,
 					})
 					.then(stream => {
 						video.srcObject = stream;
 						recorder = new MediaRecorder(stream, {
-							mimeType: "video/webm",
+							mimeType: 'video/webm; codecs="vp9"',
 						});
 						recorder.ondataavailable = e => {
 							ws.send(e.data);
@@ -51,7 +72,9 @@ function Live() {
 			} else {
 				source.addEventListener("sourceopen", _ => {
 					console.log("sourceOpened");
-					sourceBuffer = source.addSourceBuffer("video/webm");
+					sourceBuffer = source.addSourceBuffer(
+						'video/webm; codecs="vp9"'
+					);
 					// have to wait for updateend before appending another buffer
 					sourceBuffer.addEventListener("updateend", _ => {
 						console.log("ended sourceBuffer update");
@@ -77,19 +100,24 @@ function Live() {
 		return _ => {
 			ws.close();
 			recorder?.stop();
-			source?.endOfStream();
 			URL.revokeObjectURL(video.src);
 		};
-	}, [id]);
-
+	}, [id, data]);
+	if (data) {
+		if (!data.getUser.isLive) return <p>User is not live</p>;
+	}
+	const video = videoData.getVideo;
 	return (
 		<div className="container">
 			<div className="row">
 				<div className="col-md-8">
 					<div>
 						<video ref={videoRef} autoPlay></video>
-						<p>Video Title</p>
-						<p>upload date</p>
+						<p>{video.title}</p>
+						<p>{video.description}</p>
+						<p>
+							{new Date(Number(createdAt)).toLocaleDateString()}
+						</p>
 						<div className="d-flex flex-row-reverse fs-3">
 							<BiCommentDetail />
 							<BiLike />
@@ -98,15 +126,17 @@ function Live() {
 
 					<hr />
 
-					<div className="">
-						<img />
-						<h3>Channel Name</h3>
+					<div>
+						<img
+							src={video.author.profilePic}
+							alt={video.author.username}
+						/>
+						<h3>{video.author.username}</h3>
 						<div className="d-flex flex-row-reverse">
 							<button className="btn btn-danger">
 								subscribe
 							</button>
 						</div>
-						<p>video description</p>
 					</div>
 
 					<hr />

@@ -3,6 +3,7 @@ import { gql } from "@apollo/client";
 export const CREATE_VIDEO = gql`
 	mutation addVideo($video: VideoInput) {
 		addVideo(video: $video) {
+			id
 			title
 			description
 			url

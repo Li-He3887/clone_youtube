@@ -23,17 +23,25 @@ export const DELETE_USER = gql`
 `;
 
 export const SUBSCRIBE = gql`
-  mutation subscribe(userId: ID) {
-    subscribe(userId:$userId) {
-      subscribings
-    }
-  }
+	mutation subscribe($userId: ID) {
+		subscribe(userId: $userId) {
+			subscribings
+		}
+	}
 `;
 
 export const UNSUBSCRIBE = gql`
 	mutation unsubscribe($userId: ID) {
 		unsubscribe(userId: $userId) {
 			subscribings
+		}
+	}
+`;
+
+export const UPDATE_LIVE_STATUS = gql`
+	mutation updateLiveStatus($isLive: Boolean) {
+		updateLiveStatus(isLive: $isLive) {
+			isLive
 		}
 	}
 `;

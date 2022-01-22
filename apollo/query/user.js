@@ -5,7 +5,7 @@ export const GET_ME = gql`
 		getMe {
 			id
 			username
-			mail
+			email
 			profilePic
 			bannerPic
 			subscribers
@@ -19,7 +19,8 @@ export const GET_USER = gql`
 		getUser(id: $id) {
 			id
 			username
-			mail
+			email
+			isLive
 			profilePic
 			bannerPic
 			subscribers
