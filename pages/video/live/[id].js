@@ -14,7 +14,7 @@ function Live() {
 	const router = useRouter();
 	const { id, videoId } = router.query;
 	const [initiator, setInitiator] = useState(false);
-	const videoRef = useRef();
+	const [vid, setVid] = useState();
 	const { data, loading, error } = useQuery(GET_USER, {
 		variables: {
 			id,
@@ -28,7 +28,7 @@ function Live() {
 
 	useEffect(() => {
 		const user = jwtDecode(localStorage.getItem(TOKEN_NAME));
-		if (!id || !data?.getUser?.isLive) return;
+		if (!id || !data?.getUser?.isLive || !vid) return;
 		const isInitiating = user.id === id;
 		// const isInitiating = localStorage.getItem("initiator");
 		const buffers = [];
@@ -39,7 +39,7 @@ function Live() {
 				TOKEN_NAME
 			)}`
 		);
-		const video = videoRef.current;
+		const video = vid;
 		const source = new MediaSource();
 		let recorder;
 		let sourceBuffer;
@@ -63,7 +63,7 @@ function Live() {
 					.then(stream => {
 						video.srcObject = stream;
 						recorder = new MediaRecorder(stream, {
-							mimeType: 'video/webm; codecs="vp9"',
+							mimeType: "video/webm",
 						});
 						recorder.ondataavailable = e => {
 							ws.send(e.data);
@@ -103,15 +103,22 @@ function Live() {
 			recorder?.stop();
 			URL.revokeObjectURL(video.src);
 		};
-	}, [id, data]);
-
+	}, [id, data, vid]);
 	if (data) {
 		if (!data.getUser.isLive) return <p>User is not live</p>;
 	}
 	if (videoDataLoading || loading) return <p>Loading...</p>;
 	const video = videoData.getVideo;
 
-	return <WatchLive ref={videoRef} video={video} roomId={id} />;
+	return (
+		<WatchLive
+			ref={ref => {
+				setVid(ref);
+			}}
+			video={video}
+			roomId={id}
+		/>
+	);
 }
 
 export default Live;

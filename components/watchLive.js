@@ -4,6 +4,7 @@ import { useSubscription, useMutation } from "@apollo/client";
 import LikeButton from "./likeButton";
 import { CHAT_SUBSCRIPTION } from "../apollo/subscription";
 import { ADD_MESSAGE } from "../apollo/mutation/message";
+import { TOKEN_NAME } from "../vars/token";
 
 const WatchLive = forwardRef(function WatchLive({ video, roomId }, ref) {
 	const { data } = useSubscription(CHAT_SUBSCRIPTION, {
@@ -23,7 +24,8 @@ const WatchLive = forwardRef(function WatchLive({ video, roomId }, ref) {
 	};
 
 	const handleSendMessage = async _ => {
-		if (message.trim().length === 0) return;
+		if (message.trim().length === 0 || !localStorage.getItem(TOKEN_NAME))
+			return;
 		try {
 			await addMessage({
 				variables: {

@@ -1,5 +1,5 @@
 import Login from "../login";
-import Sidebar from "./Sidebar";
+import Sidebar from "./sidebar";
 import { TOKEN_NAME } from "../../vars/token";
 import {
 	Navbar,

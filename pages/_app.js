@@ -10,7 +10,7 @@ import { setContext } from "@apollo/client/link/context";
 import Script from "next/script";
 import Head from "next/head";
 import { TOKEN_NAME } from "../vars/token";
-import Topnav from "../components/form/Topnav";
+import Topnav from "../components/form/topnav";
 
 import "bootstrap/dist/css/bootstrap.css";
 import "../styles/globals.css";
