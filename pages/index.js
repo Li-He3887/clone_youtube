@@ -21,7 +21,6 @@ function Home() {
 						src="https://res.cloudinary.com/dxbi9mcea/video/upload/v1641950155/samples/sea-turtle.jpg"
 					/>
 					<Card.Body>
-						<p>{video.id}</p>
 						<Card.Title>{video.title}</Card.Title>
 					</Card.Body>
 				</Card>

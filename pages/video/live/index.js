@@ -29,6 +29,7 @@ function Live() {
 		e.preventDefault();
 		if (form.title.trim().length === 0 || form.title.trim().length === 0)
 			return;
+
 		const token = localStorage.getItem(TOKEN_NAME);
 		const user = jwtDecode(token);
 
